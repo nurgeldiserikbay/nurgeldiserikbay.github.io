@@ -1,30 +1,52 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import MainHeader from '@/components/MainHeader.vue'
+
+const SITE_LIST = [
+  {
+    type: 'Игры',
+    list: [
+      {
+        url: 'https://nurgeldiserikbay.github.io/stonefall/',
+        name: 'Stone Fall',
+      },
+    ]
+  }
+]
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="page">
+    <MainHeader />
+
+    <div class="resourceses">
+      <div v-for="resource in SITE_LIST" :key="resource.type" class="resource">
+        <div class="resource__type">{{ resource.type }}</div>
+        <div class="resource__list">
+          <a v-for="item in resource.list" :key="item.name" :href="item.url" class="resource__item" target="_blank">{{ item.name }}</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style lang="scss" scoped>
+.resourceses {
+  padding: 0 15px;
+  padding-bottom: 35px;
+
+  .resource {
+    margin-bottom: 25px;
+
+    &__type {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    &__item {
+      color: #020202;
+      font-size: 1.6rem;
+    }
+  }
 }
 </style>
