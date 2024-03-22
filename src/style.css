@@ -4,6 +4,7 @@ html {
 }
 
 body {
+  position: relative;
   min-height: 100%;
   margin: 0;
   width: 100%;
@@ -17,4 +18,14 @@ body {
 
 .page {
   width: 100%;
+}
+
+.adverb {
+  position: fixed;
+  width: 100%;
+  max-width: 850px;
+  max-height: 150px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
