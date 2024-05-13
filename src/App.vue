@@ -9,6 +9,10 @@ const SITE_LIST = [
         url: 'https://nurgeldiserikbay.github.io/stonefall/',
         name: 'Stone Fall',
       },
+      {
+        url: 'https://nurgeldiserikbay.github.io/chessknightpuzzles/',
+        name: 'Chess Knight Puzzles',
+      },
     ]
   }
 ]
