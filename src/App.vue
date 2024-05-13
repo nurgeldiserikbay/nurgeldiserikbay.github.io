@@ -51,6 +51,12 @@ const SITE_LIST = [
       color: #020202;
       font-size: 1.6rem;
     }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 }
 </style>
