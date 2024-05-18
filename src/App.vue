@@ -14,6 +14,47 @@ const SITE_LIST = [
         name: 'Chess Knight Puzzles',
       },
     ]
+  },
+  {
+    type: 'Сайты',
+    list: [
+      {
+        url: 'https://nurgeldiserikbay.github.io/cargo/ru/auth/login',
+        name: 'Cargo',
+      },
+      {
+        url: 'https://nurgeldiserikbay.github.io/cacg/',
+        name: 'CACG',
+      },
+      {
+        url: 'https://nurgeldiserikbay.github.io/erg/',
+        name: 'ERG',
+      },
+      {
+        url: 'https://nurgeldiserikbay.github.io/jobtron/',
+        name: 'JOBTron',
+      },
+      {
+        url: 'https://nurgeldiserikbay.github.io/private_equity_list/',
+        name: 'Private Equity List',
+      },
+      {
+        url: 'https://nurgeldiserikbay.github.io/medtour/',
+        name: 'MEDTOUR',
+      },
+      {
+        url: 'https://nurgeldiserikbay.github.io/garage/',
+        name: 'LIVAN',
+      },
+      {
+        url: 'https://nurgeldiserikbay.github.io/enbek-kz/',
+        name: 'ENBEK-KZ',
+      },
+      {
+        url: 'https://nurgeldiserikbay.github.io/aemz/',
+        name: 'AEMZ',
+      },
+    ]
   }
 ]
 </script>
