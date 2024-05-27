@@ -20,7 +20,7 @@
 					:key="resumeInd"
 					:class="resume.class"
 				>
-					<template v-for="(block, blockInd) in resume.blocks" :key="blockInd">
+					<div v-for="(block, blockIndex) in resume.blocks" :key="blockIndex">
 						<h3 class="resume__title" v-html="block.title"></h3>
 						<div
 							v-for="(subblock, subBlockInd) in block.subblocks"
@@ -40,7 +40,7 @@
 								</li>
 							</ul>
 						</div>
-					</template>
+					</div>
 				</div>
 			</div>
 		</div>
