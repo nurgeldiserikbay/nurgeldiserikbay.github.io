@@ -6,7 +6,7 @@ import ru from './ru'
 
 export const i18n = createI18n({
   legacy: false,
-	locale: 'ru',
+	locale: 'en',
 	fallbackLocale: 'en',
 	messages: {
 		kk,
