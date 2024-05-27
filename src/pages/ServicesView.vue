@@ -3,49 +3,33 @@
 		{
 			id: 0,
 			icon: 'bx bxl-dribbble',
-			title: 'Lorem Ipsum',
+			title: 'services.0.title',
 			class: '',
-			text: 'Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi',
+			text: 'services.0.text',
 			href: '',
 		},
 		{
 			id: 1,
 			icon: 'bx bxl-file',
-			title: 'Sed ut perspiciatis',
+			title: 'services.1.title',
 			class: 'mt-4 mt-md-0',
-			text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore',
+			text: 'services.1.text',
 			href: '',
 		},
 		{
 			id: 2,
 			icon: 'bx bxl-tachometer',
-			title: 'Magni Dolores',
+			title: 'services.2.title',
 			class: 'mt-4 mt-lg-0',
-			text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia',
+			text: 'services.2.text',
 			href: '',
 		},
 		{
 			id: 3,
 			icon: 'bx bx-world',
-			title: 'Nemo Enim',
+			title: 'services.3.title',
 			class: 'mt-4',
-			text: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis',
-			href: '',
-		},
-		{
-			id: 4,
-			icon: 'bx bx-slideshow',
-			title: 'Dele cardo',
-			class: 'mt-4',
-			text: 'Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur',
-			href: '',
-		},
-		{
-			id: 5,
-			icon: 'bx bx-arch',
-			title: 'Divera don',
-			class: 'mt-4',
-			text: 'Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur',
+			text: 'services.3.text',
 			href: '',
 		},
 	]
@@ -55,8 +39,8 @@
 	<section id="services" class="section services">
 		<div class="container">
 			<div class="section__subtitle">
-				<h2>Services</h2>
-				<p>My Services</p>
+				<h2>{{ $t('pages.services.title') }}</h2>
+				<p>{{ $t('pages.services.subtitle') }}</p>
 			</div>
 
 			<div class="row">
@@ -69,9 +53,9 @@
 					<div class="icon-box">
 						<div class="icon"><i :class="service.icon"></i></div>
 						<h4>
-							<a :href="service.class">{{ service.title }}</a>
+							<a :href="service.class">{{ $t(service.title) }}</a>
 						</h4>
-						<p>{{ service.text }}</p>
+						<p>{{ $t(service.text) }}</p>
 					</div>
 				</div>
 			</div>
@@ -143,6 +127,7 @@
 
 				a {
 					color: #fff;
+					pointer-events: none;
 				}
 			}
 

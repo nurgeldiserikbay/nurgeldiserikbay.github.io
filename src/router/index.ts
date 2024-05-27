@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createWebHashHistory, createRouter } from 'vue-router'
 
 import HomeView from '@/pages/HomeView.vue'
 import AboutView from '@/pages/AboutView.vue'
@@ -8,17 +8,17 @@ import PortfolioView from '@/pages/PortfolioView.vue'
 import ContactView from '@/pages/ContactView.vue'
 
 const routes = [
-  { path: '/', component: HomeView },
-  { path: '/about', component: AboutView },
-  { path: '/resume', component: ResumeView },
-  { path: '/services', component: ServicesView },
-  { path: '/portfolio', component: PortfolioView },
-  { path: '/contact', component: ContactView },
+	{ path: '/', component: HomeView },
+	{ path: '/about', component: AboutView },
+	{ path: '/resume', component: ResumeView },
+	{ path: '/services', component: ServicesView },
+	{ path: '/portfolio', component: PortfolioView },
+	{ path: '/contact', component: ContactView },
 ]
 
 const router = createRouter({
-  history: createMemoryHistory(),
-  routes,
+	history: createWebHashHistory(),
+	routes,
 })
 
 export default router

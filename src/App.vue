@@ -4,11 +4,13 @@
 
 <template>
 	<MainHeader />
+
 	<router-view v-slot="{ Component }">
 		<transition name="route-transition">
 			<component :is="Component" />
 		</transition>
 	</router-view>
+
 	<div class="credits">
 		<!-- All the links in the footer should remain intact. -->
 		<!-- You can delete the links only if you purchased the pro version. -->

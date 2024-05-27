@@ -1,32 +1,36 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	import { SOCIALS } from '@/consts/content'
+</script>
 
 <template>
 	<section id="contact" class="section contact">
 		<div class="container">
 			<div class="section__subtitle">
-				<h2>Contact</h2>
-				<p>Contact Me</p>
+				<h2>{{ $t('pages.contact.title') }}</h2>
+				<p>{{ $t('pages.contact.subtitle') }}</p>
 			</div>
 
 			<div class="row mt-2">
 				<div class="col-md-6 d-flex align-items-stretch">
 					<div class="info-box">
 						<i class="bx bx-map"></i>
-						<h3>My Address</h3>
-						<p>A108 Adam Street, New York, NY 535022</p>
+						<h3>{{ $t('labels.myaddress') }}</h3>
+						<p>{{ $t('pages.contact.myaddress') }}</p>
 					</div>
 				</div>
 
 				<div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
 					<div class="info-box">
 						<i class="bx bx-share-alt"></i>
-						<h3>Social Profiles</h3>
+						<h3>{{ $t('pages.contact.subtitle1') }}</h3>
 						<div class="social-links">
-							<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-							<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-							<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-							<a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-							<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+							<a
+								v-for="social in SOCIALS"
+								:key="social.name"
+								:href="social.href"
+								:class="social.class"
+								><i :class="social.icon"></i
+							></a>
 						</div>
 					</div>
 				</div>
@@ -34,15 +38,15 @@
 				<div class="col-md-6 mt-4 d-flex align-items-stretch">
 					<div class="info-box">
 						<i class="bx bx-envelope"></i>
-						<h3>Email Me</h3>
-						<p>contact@example.com</p>
+						<h3>{{ $t('pages.contact.emailme') }}</h3>
+						<p>nurikserikbay1995@gmail.com</p>
 					</div>
 				</div>
 				<div class="col-md-6 mt-4 d-flex align-items-stretch">
 					<div class="info-box">
 						<i class="bx bx-phone-call"></i>
-						<h3>Call Me</h3>
-						<p>+1 5589 55488 55</p>
+						<h3>{{ $t('pages.contact.callme') }}</h3>
+						<p>8 708 341 60 54</p>
 					</div>
 				</div>
 			</div>
@@ -55,7 +59,7 @@
 							name="name"
 							class="form-control"
 							id="name"
-							placeholder="Your Name"
+							:placeholder="$t('placeholder.name')"
 							required
 						/>
 					</div>
@@ -65,7 +69,7 @@
 							class="form-control"
 							name="email"
 							id="email"
-							placeholder="Your Email"
+							:placeholder="$t('placeholder.email')"
 							required
 						/>
 					</div>
@@ -76,7 +80,7 @@
 						class="form-control"
 						name="subject"
 						id="subject"
-						placeholder="Subject"
+						:placeholder="$t('placeholder.subject')"
 						required
 					/>
 				</div>
@@ -85,17 +89,17 @@
 						class="form-control"
 						name="message"
 						rows="5"
-						placeholder="Message"
+						:placeholder="$t('placeholder.message')"
 						required
 					></textarea>
 				</div>
 				<div class="my-3">
-					<div class="loading">Loading</div>
+					<div class="loading">{{ $t('labels.loading') }}</div>
 					<div class="error-message"></div>
-					<div class="sent-message">Your message has been sent. Thank you!</div>
+					<div class="sent-message">{{ $t('messeges.sendedMessage') }}</div>
 				</div>
 				<div class="text-center">
-					<button type="submit">Send Message</button>
+					<button type="submit">{{ $t('commands.send') }}</button>
 				</div>
 			</form>
 		</div>

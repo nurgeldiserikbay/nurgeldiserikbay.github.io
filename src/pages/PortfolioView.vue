@@ -2,10 +2,101 @@
 	import { ref, onMounted, nextTick as $nextTick } from 'vue'
 
 	const FILTERS = [
-		{ selector: '*', text: 'All' },
-		{ selector: '.filter-app', text: 'App' },
-		{ selector: '.filter-card', text: 'Card' },
-		{ selector: '.filter-web', text: 'Web' },
+		{ selector: '*', text: 'filters.all' },
+		{ selector: '.filter-web', text: 'filters.web' },
+		{ selector: '.filter-pwa', text: 'filters.pwa' },
+		{ selector: '.filter-apk', text: 'filters.apk' },
+	]
+
+	const PORTFOLIO = [
+		{
+			img: '/assets/img/portfolio/aemz.png',
+			title: 'AEMZ',
+			type: 'Web',
+			class: FILTERS[1].selector.slice(1),
+			fullImg: '/assets/img/portfolio/aemz.png',
+			ifame: 'https://nurgeldiserikbay.github.io/aemz/',
+		},
+		{
+			img: '/assets/img/portfolio/cacg.png',
+			title: 'CACG',
+			type: 'Web',
+			class: FILTERS[1].selector.slice(1),
+			fullImg: '/assets/img/portfolio/cacg.png',
+			ifame: 'https://nurgeldiserikbay.github.io/cacg/',
+		},
+		{
+			img: '/assets/img/portfolio/enbek.png',
+			title: 'Enbek.kz',
+			type: 'Web',
+			class: FILTERS[1].selector.slice(1),
+			fullImg: '/assets/img/portfolio/enbek.png',
+			ifame: 'https://nurgeldiserikbay.github.io/enbek-kz/',
+		},
+		{
+			img: '/assets/img/portfolio/erg.png',
+			title: 'ERG',
+			type: 'Web',
+			class: FILTERS[1].selector.slice(1),
+			fullImg: '/assets/img/portfolio/erg.png',
+			ifame: 'https://nurgeldiserikbay.github.io/erg/',
+		},
+		{
+			img: '/assets/img/portfolio/ipost.png',
+			title: 'IPost',
+			type: 'Web',
+			class: FILTERS[1].selector.slice(1),
+			fullImg: '/assets/img/portfolio/ipost.png',
+			ifame: 'https://nurgeldiserikbay.github.io/cargo/',
+		},
+		{
+			img: '/assets/img/portfolio/jobtron.png',
+			title: 'JobTron',
+			type: 'Web',
+			class: FILTERS[1].selector.slice(1),
+			fullImg: '/assets/img/portfolio/jobtron.png',
+			ifame: 'https://nurgeldiserikbay.github.io/jobtron/',
+		},
+		{
+			img: '/assets/img/portfolio/livan.png',
+			title: 'Livan',
+			type: 'Web',
+			class: FILTERS[1].selector.slice(1),
+			fullImg: '/assets/img/portfolio/livan.png',
+			ifame: 'https://nurgeldiserikbay.github.io/garage/',
+		},
+		{
+			img: '/assets/img/portfolio/medtour.png',
+			title: 'Medtour',
+			type: 'Web',
+			class: FILTERS[1].selector.slice(1),
+			fullImg: '/assets/img/portfolio/medtour.png',
+			ifame: 'https://nurgeldiserikbay.github.io/medtour/',
+		},
+		{
+			img: '/assets/img/portfolio/private.png',
+			title: 'Private',
+			type: 'Web',
+			class: FILTERS[1].selector.slice(1),
+			fullImg: '/assets/img/portfolio/private.png',
+			ifame: 'https://nurgeldiserikbay.github.io/private_equity_list/',
+		},
+		{
+			img: '/assets/img/portfolio/stonefall.png',
+			title: 'StoneFall',
+			type: 'PWA',
+			class: FILTERS[2].selector.slice(1),
+			fullImg: '/assets/img/portfolio/stonefall.png',
+			ifame: 'https://nurgeldiserikbay.github.io/stonefall/',
+		},
+		{
+			img: '/assets/img/portfolio/chess.png',
+			title: 'Chess Knight Puzzles',
+			type: 'APK',
+			class: FILTERS[3].selector.slice(1),
+			fullImg: '/assets/img/portfolio/chess.png',
+			ifame: 'https://play.google.com/store/apps/details?id=com.thelightcome.chessknightpuzzles',
+		},
 	]
 
 	const portfolioContainer = ref<HTMLDivElement | null>(null)
@@ -16,7 +107,7 @@
 		if (portfolioContainer.value) {
 			$nextTick(() => {
 				setTimeout(() => {
-				// @ts-ignore
+					// @ts-ignore
 					portfolioIsotope.value = new Isotope(portfolioContainer.value, {
 						itemSelector: '.portfolio__item',
 						layoutMode: 'fitRows',
@@ -52,8 +143,8 @@
 	<section id="portfolio" class="section portfolio">
 		<div class="container">
 			<div class="section__subtitle">
-				<h2>Portfolio</h2>
-				<p>My Works</p>
+				<h2>{{ $t('pages.portfolio.title') }}</h2>
+				<p>{{ $t('pages.portfolio.subtitle') }}</p>
 			</div>
 
 			<div class="row">
@@ -65,281 +156,34 @@
 							:class="{ 'filter-active': activeFilter === filter.selector }"
 							@click="clickFilter(filter.selector)"
 						>
-							{{ filter.text }}
+							{{ $t(filter.text) }}
 						</li>
 					</ul>
 				</div>
 			</div>
 
 			<div ref="portfolioContainer" class="row portfolio-container">
-				<div class="col-lg-4 col-md-6 portfolio__item filter-app">
+				<div
+					v-for="(item, itemInd) in PORTFOLIO"
+					:key="itemInd"
+					class="col-lg-4 col-md-6 portfolio__item"
+					:class="item.class"
+				>
 					<div class="portfolio__wrap">
-						<img
-							src="/assets/img/portfolio/portfolio-1.jpg"
-							class="img-fluid"
-							alt=""
-						/>
+						<img :src="item.img" class="img-fluid" alt="" />
 						<div class="portfolio__info">
-							<h4>App 1</h4>
-							<p>App</p>
+							<h4>{{ item.title }}</h4>
+							<p>{{ item.type }}</p>
 							<div class="portfolio__links">
 								<a
-									href="/assets/img/portfolio/portfolio-1.jpg"
+									:href="item.fullImg"
 									data-gallery="portfolioGallery"
 									class="portfolio-lightbox"
 									title="App 1"
 									><i class="bx bx-plus"></i
 								></a>
 								<a
-									href="portfolio-details.html"
-									data-gallery="portfolioDetailsGallery"
-									data-glightbox="type: external"
-									class="portfolio-details-lightbox"
-									title="Portfolio Details"
-									><i class="bx bx-link"></i
-								></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 portfolio__item filter-web">
-					<div class="portfolio__wrap">
-						<img
-							src="/assets/img/portfolio/portfolio-2.jpg"
-							class="img-fluid"
-							alt=""
-						/>
-						<div class="portfolio__info">
-							<h4>Web 3</h4>
-							<p>Web</p>
-							<div class="portfolio__links">
-								<a
-									href="/assets/img/portfolio/portfolio-2.jpg"
-									data-gallery="portfolioGallery"
-									class="portfolio-lightbox"
-									title="Web 3"
-									><i class="bx bx-plus"></i
-								></a>
-								<a
-									href="portfolio-details.html"
-									data-gallery="portfolioDetailsGallery"
-									data-glightbox="type: external"
-									class="portfolio-details-lightbox"
-									title="Portfolio Details"
-									><i class="bx bx-link"></i
-								></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 portfolio__item filter-app">
-					<div class="portfolio__wrap">
-						<img
-							src="/assets/img/portfolio/portfolio-3.jpg"
-							class="img-fluid"
-							alt=""
-						/>
-						<div class="portfolio__info">
-							<h4>App 2</h4>
-							<p>App</p>
-							<div class="portfolio__links">
-								<a
-									href="/assets/img/portfolio/portfolio-3.jpg"
-									data-gallery="portfolioGallery"
-									class="portfolio-lightbox"
-									title="App 2"
-									><i class="bx bx-plus"></i
-								></a>
-								<a
-									href="portfolio-details.html"
-									data-gallery="portfolioDetailsGallery"
-									data-glightbox="type: external"
-									class="portfolio-details-lightbox"
-									title="Portfolio Details"
-									><i class="bx bx-link"></i
-								></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 portfolio__item filter-card">
-					<div class="portfolio__wrap">
-						<img
-							src="/assets/img/portfolio/portfolio-4.jpg"
-							class="img-fluid"
-							alt=""
-						/>
-						<div class="portfolio__info">
-							<h4>Card 2</h4>
-							<p>Card</p>
-							<div class="portfolio__links">
-								<a
-									href="/assets/img/portfolio/portfolio-4.jpg"
-									data-gallery="portfolioGallery"
-									class="portfolio-lightbox"
-									title="Card 2"
-									><i class="bx bx-plus"></i
-								></a>
-								<a
-									href="portfolio-details.html"
-									data-gallery="portfolioDetailsGallery"
-									data-glightbox="type: external"
-									class="portfolio-details-lightbox"
-									title="Portfolio Details"
-									><i class="bx bx-link"></i
-								></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 portfolio__item filter-web">
-					<div class="portfolio__wrap">
-						<img
-							src="/assets/img/portfolio/portfolio-5.jpg"
-							class="img-fluid"
-							alt=""
-						/>
-						<div class="portfolio__info">
-							<h4>Web 2</h4>
-							<p>Web</p>
-							<div class="portfolio__links">
-								<a
-									href="/assets/img/portfolio/portfolio-5.jpg"
-									data-gallery="portfolioGallery"
-									class="portfolio-lightbox"
-									title="Web 2"
-									><i class="bx bx-plus"></i
-								></a>
-								<a
-									href="portfolio-details.html"
-									data-gallery="portfolioDetailsGallery"
-									data-glightbox="type: external"
-									class="portfolio-details-lightbox"
-									title="Portfolio Details"
-									><i class="bx bx-link"></i
-								></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 portfolio__item filter-app">
-					<div class="portfolio__wrap">
-						<img
-							src="/assets/img/portfolio/portfolio-6.jpg"
-							class="img-fluid"
-							alt=""
-						/>
-						<div class="portfolio__info">
-							<h4>App 3</h4>
-							<p>App</p>
-							<div class="portfolio__links">
-								<a
-									href="/assets/img/portfolio/portfolio-6.jpg"
-									data-gallery="portfolioGallery"
-									class="portfolio-lightbox"
-									title="App 3"
-									><i class="bx bx-plus"></i
-								></a>
-								<a
-									href="portfolio-details.html"
-									data-gallery="portfolioDetailsGallery"
-									data-glightbox="type: external"
-									class="portfolio-details-lightbox"
-									title="Portfolio Details"
-									><i class="bx bx-link"></i
-								></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 portfolio__item filter-card">
-					<div class="portfolio__wrap">
-						<img
-							src="/assets/img/portfolio/portfolio-7.jpg"
-							class="img-fluid"
-							alt=""
-						/>
-						<div class="portfolio__info">
-							<h4>Card 1</h4>
-							<p>Card</p>
-							<div class="portfolio__links">
-								<a
-									href="/assets/img/portfolio/portfolio-7.jpg"
-									data-gallery="portfolioGallery"
-									class="portfolio-lightbox"
-									title="Card 1"
-									><i class="bx bx-plus"></i
-								></a>
-								<a
-									href="portfolio-details.html"
-									data-gallery="portfolioDetailsGallery"
-									data-glightbox="type: external"
-									class="portfolio-details-lightbox"
-									title="Portfolio Details"
-									><i class="bx bx-link"></i
-								></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 portfolio__item filter-card">
-					<div class="portfolio__wrap">
-						<img
-							src="/assets/img/portfolio/portfolio-8.jpg"
-							class="img-fluid"
-							alt=""
-						/>
-						<div class="portfolio__info">
-							<h4>Card 3</h4>
-							<p>Card</p>
-							<div class="portfolio__links">
-								<a
-									href="/assets/img/portfolio/portfolio-8.jpg"
-									data-gallery="portfolioGallery"
-									class="portfolio-lightbox"
-									title="Card 3"
-									><i class="bx bx-plus"></i
-								></a>
-								<a
-									href="portfolio-details.html"
-									data-gallery="portfolioDetailsGallery"
-									data-glightbox="type: external"
-									class="portfolio-details-lightbox"
-									title="Portfolio Details"
-									><i class="bx bx-link"></i
-								></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 portfolio__item filter-web">
-					<div class="portfolio__wrap">
-						<img
-							src="/assets/img/portfolio/portfolio-9.jpg"
-							class="img-fluid"
-							alt=""
-						/>
-						<div class="portfolio__info">
-							<h4>Web 3</h4>
-							<p>Web</p>
-							<div class="portfolio__links">
-								<a
-									href="/assets/img/portfolio/portfolio-9.jpg"
-									data-gallery="portfolioGallery"
-									class="portfolio-lightbox"
-									title="Web 3"
-									><i class="bx bx-plus"></i
-								></a>
-								<a
-									href="portfolio-details.html"
+									:href="item.ifame"
 									data-gallery="portfolioDetailsGallery"
 									data-glightbox="type: external"
 									class="portfolio-details-lightbox"

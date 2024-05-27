@@ -3,6 +3,69 @@
 
 	const skillsContent = ref<HTMLDivElement | null>(null)
 
+	const SKILLS = [
+		{
+			colClass: 'col-lg-6',
+			items: [
+				{
+					name: 'HTML',
+					valuenow: 80,
+				},
+				{
+					name: 'CSS',
+					valuenow: 80,
+				},
+				{
+					name: 'JavaScript',
+					valuenow: 75,
+				},
+				{
+					name: 'TypeScript',
+					valuenow: 50,
+				},
+				{
+					name: 'Vue 2, 3',
+					valuenow: 80,
+				},
+				{
+					name: 'Nuxt 2, 3',
+					valuenow: 60,
+				},
+			],
+		},
+		{
+			colClass: 'col-lg-6',
+			items: [
+				{
+					name: 'React',
+					valuenow: 60,
+				},
+				{
+					name: 'Next',
+					valuenow: 40,
+				},
+				{
+					name: 'Git',
+					valuenow: 40,
+				},
+				{
+					name: 'Docker',
+					valuenow: 20,
+				},
+				{
+					name: 'SCSS',
+					valuenow: 70,
+				},
+				{
+					name: 'ExpressJS',
+					valuenow: 40,
+				},
+			],
+		},
+	]
+
+	const OTHERS: string[] = ['JQuery', 'GSAP', 'TailwindCSS', 'ThreeJS', 'BabylonJS', 'Figma', 'NestJS', 'MongoDB', 'Sequelize', 'Postgresql', 'SocketIO', 'Highcharts', 'CapacitorJS (PWA, APK)']
+
 	onMounted(() => {
 		if (skillsContent.value) {
 			// @ts-ignore
@@ -25,85 +88,29 @@
 <template>
 	<div class="container skills">
 		<div class="section__subtitle">
-			<h2>Skills</h2>
+			<h2>{{ $t('pages.about.subtitle1') }}</h2>
 		</div>
 
 		<div ref="skillsContent" class="row skills__content">
-			<div class="col-lg-6">
-				<div class="progress">
-					<span class="skill">HTML <i class="val">100%</i></span>
+			<div
+				v-for="(skillList, skillInd) in SKILLS"
+				:key="skillInd"
+				:class="skillList.colClass"
+			>
+				<div
+					v-for="skill in skillList.items"
+					:key="skill.name"
+					class="progress"
+				>
+					<span class="skill"
+						>{{ skill.name }}
+						<i class="val">{{ `${skill.valuenow}%` }}</i></span
+					>
 					<div class="progress__bar-wrap">
 						<div
 							class="progress__bar"
 							role="progressbar"
-							aria-valuenow="100"
-							aria-valuemin="0"
-							aria-valuemax="100"
-						></div>
-					</div>
-				</div>
-
-				<div class="progress">
-					<span class="skill">CSS <i class="val">90%</i></span>
-					<div class="progress__bar-wrap">
-						<div
-							class="progress__bar"
-							role="progressbar"
-							aria-valuenow="90"
-							aria-valuemin="0"
-							aria-valuemax="100"
-						></div>
-					</div>
-				</div>
-
-				<div class="progress">
-					<span class="skill">JavaScript <i class="val">75%</i></span>
-					<div class="progress__bar-wrap">
-						<div
-							class="progress__bar"
-							role="progressbar"
-							aria-valuenow="75"
-							aria-valuemin="0"
-							aria-valuemax="100"
-						></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-6">
-				<div class="progress">
-					<span class="skill">PHP <i class="val">80%</i></span>
-					<div class="progress__bar-wrap">
-						<div
-							class="progress__bar"
-							role="progressbar"
-							aria-valuenow="80"
-							aria-valuemin="0"
-							aria-valuemax="100"
-						></div>
-					</div>
-				</div>
-
-				<div class="progress">
-					<span class="skill">WordPress/CMS <i class="val">90%</i></span>
-					<div class="progress__bar-wrap">
-						<div
-							class="progress__bar"
-							role="progressbar"
-							aria-valuenow="90"
-							aria-valuemin="0"
-							aria-valuemax="100"
-						></div>
-					</div>
-				</div>
-
-				<div class="progress">
-					<span class="skill">Photoshop <i class="val">55%</i></span>
-					<div class="progress__bar-wrap">
-						<div
-							class="progress__bar"
-							role="progressbar"
-							aria-valuenow="55"
+							:aria-valuenow="skill.valuenow"
 							aria-valuemin="0"
 							aria-valuemax="100"
 						></div>
@@ -111,6 +118,11 @@
 				</div>
 			</div>
 		</div>
+
+		<p v-if="OTHERS?.length">
+			<span>{{ $t('pages.about.otherSkills') }}: </span>
+			<span>{{ OTHERS.join(', ') }}</span>
+		</p>
 	</div>
 </template>
 

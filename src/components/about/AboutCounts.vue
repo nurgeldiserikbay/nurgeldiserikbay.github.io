@@ -1,6 +1,33 @@
 <script setup lang="ts">
 	import { onMounted } from 'vue'
 
+	const COUNTS = [
+		{
+			class: 'col-lg-3 col-md-6',
+			icon: 'bi bi-emoji-smile',
+			countMax: 34,
+			text: 'labels.clients',
+		},
+		{
+			class: 'col-lg-3 col-md-6 mt-5 mt-md-0',
+			icon: 'bi bi-journal-richtext',
+			countMax: 42,
+			text: 'labels.projects',
+		},
+		{
+			class: 'col-lg-3 col-md-6 mt-5 mt-lg-0',
+			icon: 'bi bi-headset',
+			countMax: 340,
+			text: 'labels.supportTime',
+		},
+		{
+			class: 'col-lg-3 col-md-6 mt-5 mt-lg-0',
+			icon: 'bi bi-award',
+			countMax: 0,
+			text: 'labels.awards',
+		},
+	]
+
 	onMounted(() => {
 		// @ts-ignore
 		new PureCounter()
@@ -10,55 +37,20 @@
 <template>
 	<div class="container counts">
 		<div class="row">
-			<div class="col-lg-3 col-md-6">
+			<div
+				v-for="(count, countInd) in COUNTS"
+				:key="countInd"
+				:class="count.class"
+			>
 				<div class="count-box">
-					<i class="bi bi-emoji-smile"></i>
+					<i :class="count.icon"></i>
 					<span
 						data-purecounter-start="0"
-						data-purecounter-end="232"
+						:data-purecounter-end="count.countMax"
 						data-purecounter-duration="1"
 						class="purecounter"
 					></span>
-					<p>Happy Clients</p>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-				<div class="count-box">
-					<i class="bi bi-journal-richtext"></i>
-					<span
-						data-purecounter-start="0"
-						data-purecounter-end="521"
-						data-purecounter-duration="1"
-						class="purecounter"
-					></span>
-					<p>Projects</p>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-				<div class="count-box">
-					<i class="bi bi-headset"></i>
-					<span
-						data-purecounter-start="0"
-						data-purecounter-end="1463"
-						data-purecounter-duration="1"
-						class="purecounter"
-					></span>
-					<p>Hours Of Support</p>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-				<div class="count-box">
-					<i class="bi bi-award"></i>
-					<span
-						data-purecounter-start="0"
-						data-purecounter-end="24"
-						data-purecounter-duration="1"
-						class="purecounter"
-					></span>
-					<p>Awards</p>
+					<p>{{ $t(count.text) }}</p>
 				</div>
 			</div>
 		</div>
