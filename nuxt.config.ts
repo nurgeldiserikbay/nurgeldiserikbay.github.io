@@ -1,10 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // import path from 'path'
 
+import pwaConfig from './pwa.config'
+
 export default defineNuxtConfig({
 	devtools: { enabled: true },
-	modules: ['@pinia/nuxt', '@nuxtjs/i18n'],
+	modules: ['@pinia/nuxt', '@nuxtjs/i18n', '@vite-pwa/nuxt'],
 	css: ['~/assets/styles/style.scss'],
+	pwa: pwaConfig,
 	components: [
 		{
 			path: '~/components',
@@ -35,6 +38,14 @@ export default defineNuxtConfig({
 					name: 'keywords',
 					content:
 						'Vue developer, Vue.js, front-end developer, web developer, JavaScript, Vue.js portfolio, web applications, UI/UX design, front-end development, responsive design, HTML, CSS, JavaScript frameworks, single-page applications, Vue projects, Serikbay Nurgeldi',
+				},
+				{
+					name: 'apple-mobile-web-app-capable',
+					content: 'yes',
+				},
+				{
+					name: 'mobile-web-app-capable',
+					content: 'yes',
 				},
 			],
 			link: [
